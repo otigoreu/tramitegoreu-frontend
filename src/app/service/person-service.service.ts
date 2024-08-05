@@ -1,16 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { UserDataPerson, UserDataPersons } from './user.model';
+
 import { map } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Person, PersonNew, Persons } from '../model/person';
 
 interface GetPersonsApiResponse {
-  data: UserDataPersons[];
+  data: Persons[];
   success: string;
   errorMessage: string;
 }
 
 interface GetPersonApiResponse {
-  data: UserDataPerson;
+  data: Person;
   success: string;
   errorMessage: string;
 }
@@ -44,8 +45,21 @@ export class AppService {
     return this.http.get<GetPersonApiResponse>(this.baseUrl + 'persons/' + id);
   }
 
-  edit(user: UserDataPersons) {
+  edit(user: Persons) {
     return this.http.put(this.baseUrl + 'persons/' + user.id, {
+      nombres: user.nombres,
+      apellidos: user.apellidos,
+      fechaNac: user.fechaNac,
+      direccion: user.direccion,
+      referencia: user.referencia,
+      email: user.email,
+      tipoDoc: user.tipoDoc,
+      nroDoc: user.nroDoc,
+    });
+  }
+
+  new(user: PersonNew) {
+    return this.http.post(this.baseUrl + 'persons/', {
       nombres: user.nombres,
       apellidos: user.apellidos,
       fechaNac: user.fechaNac,

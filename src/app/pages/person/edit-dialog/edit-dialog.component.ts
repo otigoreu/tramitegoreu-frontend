@@ -23,10 +23,9 @@ import {
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
-import { CustomDateAdapter } from '../material/custom-adapter';
-import { AppService } from '../service/person-service.service';
-import { Persons } from '../model/person';
+import { CustomDateAdapter } from '../../../material/custom-adapter';
+import { AppService } from '../../../service/person-service.service';
+import { Persons } from '../../../model/person';
 
 @Component({
   selector: 'app-edit-dialog',

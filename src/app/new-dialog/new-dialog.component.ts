@@ -14,22 +14,22 @@ import {
 } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import {
-  MatDialogTitle,
-  MatDialogContent,
+  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogClose,
-  MAT_DIALOG_DATA,
+  MatDialogContent,
   MatDialogRef,
+  MatDialogTitle,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
 import { CustomDateAdapter } from '../material/custom-adapter';
+
 import { AppService } from '../service/person-service.service';
-import { Persons } from '../model/person';
+import { PersonNew } from '../model/person';
 
 @Component({
-  selector: 'app-edit-dialog',
+  selector: 'app-new-dialog',
   standalone: true,
   imports: [
     MatDialogTitle,
@@ -48,14 +48,14 @@ import { Persons } from '../model/person';
     { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
     { provide: DateAdapter, useClass: CustomDateAdapter },
   ],
-  templateUrl: './edit-dialog.component.html',
-  styleUrl: './edit-dialog.component.css',
+  templateUrl: './new-dialog.component.html',
+  styleUrl: './new-dialog.component.css',
 })
-export class EditDialogComponent implements OnInit {
+export class NewDialogComponent implements OnInit {
   editForm = new FormGroup({
     nombres: new FormControl('', Validators.required),
     apellidos: new FormControl(''),
-    fechaNac: new FormControl(new Date()),
+    fechaNac: new FormControl(),
     direccion: new FormControl(''),
     referencia: new FormControl(''),
     email: new FormControl(''),
@@ -94,8 +94,7 @@ export class EditDialogComponent implements OnInit {
       (this.editForm.controls.fechaNac.value!.getMonth() + 1) +
       '/' +
       this.editForm.controls.fechaNac.value!.getFullYear();
-    const user: Persons = {
-      id: this.data.personId,
+    const user: PersonNew = {
       nombres: this.editForm.controls.nombres.value!,
       apellidos: this.editForm.controls.apellidos.value!,
       fechaNac: fecha,
@@ -104,9 +103,8 @@ export class EditDialogComponent implements OnInit {
       email: this.editForm.controls.email.value!,
       tipoDoc: this.editForm.controls.tipoDoc.value!,
       nroDoc: this.editForm.controls.nroDoc.value!,
-      status: '',
     };
-    this.appService.edit(user).subscribe(() => {
+    this.appService.new(user).subscribe(() => {
       this.dialog.close();
     });
   }

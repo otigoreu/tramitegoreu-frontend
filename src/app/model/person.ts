@@ -1,4 +1,4 @@
-export interface UserDataPersons {
+export interface Persons {
   id: number;
   nombres: string;
   apellidos: string;
@@ -11,7 +11,7 @@ export interface UserDataPersons {
   status: string;
 }
 
-export interface UserDataPerson {
+export interface Person {
   id: number;
   nombres: string;
   apellidos: string;
@@ -22,4 +22,14 @@ export interface UserDataPerson {
   tipoDoc: string;
   nroDoc: string;
   status: boolean;
+}
+export interface PersonNew {
+  nombres: string;
+  apellidos: string;
+  fechaNac: string;
+  direccion: string;
+  referencia: string;
+  email: string;
+  tipoDoc: string;
+  nroDoc: string;
 }
