@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 
 import { AppService } from '../../service/person-service.service';
-import { Persons } from '../../model/person';
+import { Personas } from '../../model/persona';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { NewDialogComponent } from './new-dialog/new-dialog.component';
 
@@ -44,7 +44,7 @@ export class PersonComponent implements OnInit, AfterViewInit {
     'status',
     'actions',
   ];
-  dataSource: MatTableDataSource<Persons>;
+  dataSource: MatTableDataSource<Personas>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -52,7 +52,7 @@ export class PersonComponent implements OnInit, AfterViewInit {
   dialog = inject(MatDialog);
 
   constructor() {
-    const users: Persons[] = [];
+    const users: Personas[] = [];
     this.dataSource = new MatTableDataSource(users);
   }
 

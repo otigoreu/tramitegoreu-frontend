@@ -2,16 +2,16 @@ import { inject, Injectable } from '@angular/core';
 
 import { map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Person, PersonNew, Persons } from '../model/person';
+import { Persona, PersonaNew, Personas } from '../model/persona';
 
 interface GetPersonsApiResponse {
-  data: Persons[];
+  data: Personas[];
   success: string;
   errorMessage: string;
 }
 
 interface GetPersonApiResponse {
-  data: Person;
+  data: Persona;
   success: string;
   errorMessage: string;
 }
@@ -31,22 +31,22 @@ export class AppService {
 
   getData() {
     return this.http
-      .get<GetPersonsApiResponse>(this.baseUrl + 'persons/nombre')
+      .get<GetPersonsApiResponse>(this.baseUrl + 'personas/nombre')
       .pipe(map((response) => response.data));
   }
 
   deletePerson(id: number) {
     return this.http.delete<DeletePersonResponse>(
-      this.baseUrl + 'persons/' + id
+      this.baseUrl + 'personas/' + id
     );
   }
 
   getPerson(id: number) {
-    return this.http.get<GetPersonApiResponse>(this.baseUrl + 'persons/' + id);
+    return this.http.get<GetPersonApiResponse>(this.baseUrl + 'personas/' + id);
   }
 
-  edit(user: Persons) {
-    return this.http.put(this.baseUrl + 'persons/' + user.id, {
+  edit(user: Personas) {
+    return this.http.put(this.baseUrl + 'personas/' + user.id, {
       nombres: user.nombres,
       apellidos: user.apellidos,
       fechaNac: user.fechaNac,
@@ -58,8 +58,8 @@ export class AppService {
     });
   }
 
-  new(user: PersonNew) {
-    return this.http.post(this.baseUrl + 'persons/', {
+  new(user: PersonaNew) {
+    return this.http.post(this.baseUrl + 'personas/', {
       nombres: user.nombres,
       apellidos: user.apellidos,
       fechaNac: user.fechaNac,

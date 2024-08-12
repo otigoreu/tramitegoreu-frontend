@@ -25,7 +25,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CustomDateAdapter } from '../../../material/custom-adapter';
 import { AppService } from '../../../service/person-service.service';
-import { Persons } from '../../../model/person';
+import { Personas } from '../../../model/persona';
 
 @Component({
   selector: 'app-edit-dialog',
@@ -57,6 +57,8 @@ export class EditDialogComponent implements OnInit {
     fechaNac: new FormControl(new Date()),
     direccion: new FormControl(''),
     referencia: new FormControl(''),
+    celular: new FormControl(''),
+    edad: new FormControl(''),
     email: new FormControl(''),
     tipoDoc: new FormControl(''),
     nroDoc: new FormControl(''),
@@ -79,6 +81,8 @@ export class EditDialogComponent implements OnInit {
         fechaNac: fechaFormateada,
         direccion: response.data.direccion,
         referencia: response.data.referencia,
+        celular: response.data.celular,
+        edad: response.data.edad,
         email: response.data.email,
         tipoDoc: response.data.tipoDoc,
         nroDoc: response.data.nroDoc,
@@ -93,13 +97,15 @@ export class EditDialogComponent implements OnInit {
       (this.editForm.controls.fechaNac.value!.getMonth() + 1) +
       '/' +
       this.editForm.controls.fechaNac.value!.getFullYear();
-    const user: Persons = {
+    const user: Personas = {
       id: this.data.personId,
       nombres: this.editForm.controls.nombres.value!,
       apellidos: this.editForm.controls.apellidos.value!,
       fechaNac: fecha,
       direccion: this.editForm.controls.direccion.value!,
       referencia: this.editForm.controls.referencia.value!,
+      celular: this.editForm.controls.celular.value!,
+      edad: this.editForm.controls.edad.value!,
       email: this.editForm.controls.email.value!,
       tipoDoc: this.editForm.controls.tipoDoc.value!,
       nroDoc: this.editForm.controls.nroDoc.value!,
