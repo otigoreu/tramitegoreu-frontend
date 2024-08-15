@@ -15,6 +15,7 @@ import { AppService } from '../../service/person-service.service';
 import { Personas } from '../../model/persona';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { NewDialogComponent } from './new-dialog/new-dialog.component';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-person',
@@ -36,6 +37,7 @@ export class PersonComponent implements OnInit, AfterViewInit {
   title = 'TramiteGoreu-FrontEnd';
 
   appService = inject(AppService);
+  authService = inject(AuthService);
 
   displayedColumns: string[] = [
     'id',
@@ -110,5 +112,8 @@ export class PersonComponent implements OnInit, AfterViewInit {
       .subscribe(() => {
         this.loadData();
       });
+  }
+  logout() {
+    this.authService.logout();
   }
 }

@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { map } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Persona, PersonaNew, Personas } from '../model/persona';
+import { environment } from '../../environments/environment';
 
 interface GetPersonsApiResponse {
   data: Personas[];
@@ -25,7 +26,7 @@ interface DeletePersonResponse {
   providedIn: 'root',
 })
 export class AppService {
-  baseUrl = 'https://localhost:7230/api/';
+  baseUrl = environment.baseUrl;
 
   http = inject(HttpClient);
 
@@ -52,6 +53,8 @@ export class AppService {
       fechaNac: user.fechaNac,
       direccion: user.direccion,
       referencia: user.referencia,
+      celular: user.celular,
+      edad: user.edad,
       email: user.email,
       tipoDoc: user.tipoDoc,
       nroDoc: user.nroDoc,
@@ -65,6 +68,8 @@ export class AppService {
       fechaNac: user.fechaNac,
       direccion: user.direccion,
       referencia: user.referencia,
+      celular: user.celular,
+      edad: user.edad,
       email: user.email,
       tipoDoc: user.tipoDoc,
       nroDoc: user.nroDoc,
