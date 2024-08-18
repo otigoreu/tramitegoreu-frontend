@@ -26,21 +26,33 @@ export const routes: Routes = [
   {
     path: 'home',
     pathMatch: 'full',
-    component: HomeComponent,
+    loadComponent: () =>
+      import('../../src/app/pages/home/home.component').then(
+        (m) => m.HomeComponent
+      ),
   },
   {
     path: 'login',
     pathMatch: 'full',
-    component: Login2Component,
+    loadComponent: () =>
+      import('../../src/app/pages/login2/login2.component').then(
+        (m) => m.Login2Component
+      ),
   },
   {
     path: 'register',
     pathMatch: 'full',
-    component: RegisterComponent,
+    loadComponent: () =>
+      import('../../src/app/pages/register/register.component').then(
+        (m) => m.RegisterComponent
+      ),
   },
   {
     path: 'forgot-password',
     pathMatch: 'full',
-    component: ForgotPasswordComponent,
+    loadComponent: () =>
+      import(
+        '../../src/app/pages/forgot-password/forgot-password.component'
+      ).then((m) => m.ForgotPasswordComponent),
   },
 ];
