@@ -10,7 +10,6 @@ header{
         justify-content: center;
         align-items: center;
         gap: 50px;
-        border: 2px solid red;
         & .logo-container{
             display: flex; 
             align-items: center; 
