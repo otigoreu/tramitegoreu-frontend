@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from '../share/components/header/header.component';
-import { FooterComponent } from '../share/components/footer/footer.component';
+
+import { FooterComponent } from '../shared/components/footer/footer.component';
+import { AdminHeaderComponent } from '../shared/components/admin-header/admin-header.component';
 
 @Component({
   selector: 'app-login2',
   standalone: true,
-  imports: [HeaderComponent, FooterComponent],
+  imports: [FooterComponent, AdminHeaderComponent],
   templateUrl: './login2.component.html',
   styleUrl: './login2.component.css',
 })
