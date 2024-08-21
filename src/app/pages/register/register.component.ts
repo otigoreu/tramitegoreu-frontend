@@ -7,7 +7,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
-import { AuthService } from '../../service/auth.service';
+
+import { RegisterRequestBody } from '../../model/auth';
+import { Auth2Service } from '../../service/auth2.service';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +28,7 @@ import { AuthService } from '../../service/auth.service';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  authService = inject(AuthService);
+  authService = inject(Auth2Service);
 
   registerForm = new FormGroup({
     firstName: new FormControl(),
@@ -35,5 +37,26 @@ export class RegisterComponent {
     password: new FormControl(),
   });
 
-  register() {}
+  register() {
+    const body: RegisterRequestBody = {
+      firstName: this.registerForm.controls.firstName.value!,
+      lastName: this.registerForm.controls.lastName.value!,
+      password: this.registerForm.controls.password.value!,
+      email: this.registerForm.controls.email.value!,
+      confirmPassword: this.registerForm.controls.password.value!,
+    };
+
+    this.authService.register(body).subscribe((response) => {
+      console.log('response', response);
+      if (response && response.success) {
+        // Redirect to the customer page
+        console.log('Register successful');
+        //this.notifications.success('Registro exitoso', 'Bienvenido');
+      } else {
+        // Display an error notification
+        console.log('Register failed');
+        // this.notifications.error('Registro fallido', 'Intenta otra vez');
+      }
+    });
+  }
 }
