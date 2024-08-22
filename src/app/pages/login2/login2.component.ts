@@ -42,7 +42,7 @@ export class Login2Component {
 
   authService = inject(Auth2Service);
   router = inject(Router);
-  //notifications = inject(NotificationsService);
+  notifications = inject(NotificationsService);
 
   login() {
     const email = this.loginForm.controls.email.value!;
@@ -52,10 +52,10 @@ export class Login2Component {
       if (response && response.success) {
         localStorage.setItem('token', response.data.token);
         // this.authService.loggedIn.set(true);
-        // this.notifications.success(
-        //   'Login Exitoso',
-        //   'Bienvenido a Musical Events'
-        // );
+        this.notifications.success(
+          'Login Exitoso',
+          'Bienvenido a Tramite Goreu'
+        );
         // const isAdministrator = email === 'admin@gmail.com';
         // this.authService.isAdministrator.set(isAdministrator);
         // localStorage.setItem('isAdministrator', isAdministrator.toString());
@@ -63,7 +63,7 @@ export class Login2Component {
         this.router.navigate(['/home']);
         console.log('login successful');
       } else {
-        // this.notifications.error('Login Fallido', 'Revisa tus credenciales');
+        this.notifications.error('Login Fallido', 'Revisa tus credenciales');
         console.log('login falied');
       }
     });

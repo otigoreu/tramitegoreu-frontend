@@ -10,6 +10,7 @@ import { RouterLink } from '@angular/router';
 
 import { RegisterRequestBody } from '../../model/auth';
 import { Auth2Service } from '../../service/auth2.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-register',
@@ -29,6 +30,7 @@ import { Auth2Service } from '../../service/auth2.service';
 })
 export class RegisterComponent {
   authService = inject(Auth2Service);
+  notifications = inject(NotificationsService);
 
   registerForm = new FormGroup({
     firstName: new FormControl(),
@@ -51,11 +53,11 @@ export class RegisterComponent {
       if (response && response.success) {
         // Redirect to the customer page
         console.log('Register successful');
-        //this.notifications.success('Registro exitoso', 'Bienvenido');
+        this.notifications.success('Registro exitoso', 'Bienvenido');
       } else {
         // Display an error notification
         console.log('Register failed');
-        // this.notifications.error('Registro fallido', 'Intenta otra vez');
+        this.notifications.error('Registro fallido', 'Intenta otra vez');
       }
     });
   }
